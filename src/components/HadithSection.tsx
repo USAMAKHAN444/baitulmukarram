@@ -8,6 +8,7 @@ import {
   Globe,
   type LucideIcon,
 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import {
   TopicArabicBox,
   TopicBenefits,
