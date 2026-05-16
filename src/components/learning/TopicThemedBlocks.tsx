@@ -152,7 +152,7 @@ export const TopicCategoryPill = ({
   topic: LearningTopic;
   children: ReactNode;
 }) => (
-  <Badge className={cn("text-xs text-white border-0 shrink-0", topic.badgeClass, topic.buttonClass)}>
+  <Badge className={cn("text-xs text-white border-0 shrink-0", topic.buttonClass)}>
     {children}
   </Badge>
 );

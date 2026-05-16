@@ -3,7 +3,7 @@ import MannersSection from "@/components/MannersSection";
 
 const MannersPage = () => (
   <LearningTopicLayout topicId="manners">
-    <MannersSection />
+    <MannersSection topicId="manners" />
   </LearningTopicLayout>
 );
 

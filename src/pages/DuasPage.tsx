@@ -3,7 +3,7 @@ import DuasSection from "@/components/DuasSection";
 
 const DuasPage = () => (
   <LearningTopicLayout topicId="duas">
-    <DuasSection />
+    <DuasSection topicId="duas" />
   </LearningTopicLayout>
 );
 

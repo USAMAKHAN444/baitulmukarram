@@ -3,7 +3,7 @@ import HadithSection from "@/components/HadithSection";
 
 const HadithPage = () => (
   <LearningTopicLayout topicId="hadith">
-    <HadithSection />
+    <HadithSection topicId="hadith" />
   </LearningTopicLayout>
 );
 
