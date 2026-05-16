@@ -1,9 +1,36 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Heart, Hand, Users, Sparkles, Home, MessageCircle, HelpCircle, BookOpen, Shield, Globe, Smile, Award } from "lucide-react";
+import {
+  Heart,
+  Hand,
+  Users,
+  Sparkles,
+  Home,
+  MessageCircle,
+  BookOpen,
+  Shield,
+  Globe,
+  Award,
+} from "lucide-react";
+import {
+  TopicBenefits,
+  TopicCard,
+  TopicCardTitle,
+  TopicCategoryPill,
+  TopicIntro,
+  TopicLabel,
+  TopicSeparator,
+  TopicTextBox,
+  useLearningTopic,
+} from "@/components/learning/TopicThemedBlocks";
+import { cn } from "@/lib/utils";
 
-const MannersSection = () => {
+type MannersSectionProps = {
+  topicId?: string;
+};
+
+const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
+  const { topic, headerGradient } = useLearningTopic(topicId);
   const manners = [
     {
       title: "Saying Bismillah",
@@ -253,6 +280,104 @@ const MannersSection = () => {
       </div>
     </section>
   );
+  return (
+    <section className="space-y-8">
+      <TopicIntro topic={topic} badge="🤝 Islamic Manners | اسلامی آداب">
+        Teach children Islamic etiquette and good character based on Quran and Sunnah.
+        Each point includes practical examples and Urdu translations for clarity.
+      </TopicIntro>
+
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        {categories.map((cat, index) => {
+          const CatIcon = cat.icon;
+          return (
+            <Card
+              key={index}
+              className={cn(
+                "text-center border-2 overflow-hidden hover:shadow-lg transition-all",
+                topic.accentBorder
+              )}
+            >
+              <CardHeader className={cn("py-4", headerGradient)}>
+                <CatIcon className="w-7 h-7 text-white mx-auto" />
+              </CardHeader>
+              <CardContent className={cn("p-3", topic.pageBg)}>
+                <p className={cn("font-semibold text-sm", topic.accentText)}>{cat.name}</p>
+                <Badge className={cn("text-xs mt-2 text-white border-0", topic.buttonClass)}>
+                  {cat.count} Tips
+                </Badge>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {manners.map((manner, index) => {
+          const Icon = manner.icon;
+          return (
+            <TopicCard
+              key={index}
+              topic={topic}
+              header={
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="p-2 bg-white/20 rounded-lg">
+                        <Icon className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-white font-bold">{index + 1}.</span>
+                    </div>
+                    <TopicCategoryPill topic={topic}>{manner.category}</TopicCategoryPill>
+                  </div>
+                  <TopicCardTitle>
+                    {manner.title} | {manner.urdu}
+                  </TopicCardTitle>
+                </div>
+              }
+            >
+              <div>
+                <TopicLabel topic={topic}>English:</TopicLabel>
+                <TopicTextBox topic={topic}>{manner.description}</TopicTextBox>
+              </div>
+
+              <TopicSeparator topic={topic} />
+
+              <div>
+                <TopicLabel topic={topic}>Urdu:</TopicLabel>
+                <TopicTextBox topic={topic} align="right">
+                  {manner.urduDescription}
+                </TopicTextBox>
+              </div>
+            </TopicCard>
+          );
+        })}
+      </div>
+
+      <TopicBenefits topic={topic} title="🌟 Why Islamic Manners Matter?">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-8">
+          {[
+            { icon: "🌱", title: "Character Development", text: "Build strong moral foundations and become a better person following Islamic teachings." },
+            { icon: "❤️", title: "Social Harmony", text: "Create positive relationships with family, friends, and community through good manners." },
+            { icon: "✨", title: "Spiritual Reward", text: "Earn Allah's pleasure and reward by following the beautiful example of Prophet Muhammad ﷺ." },
+          ].map((item) => (
+            <div key={item.title}>
+              <div className="text-4xl mb-4">{item.icon}</div>
+              <h4 className={cn("font-semibold mb-3", topic.accentText)}>{item.title}</h4>
+              <p className="text-gray-700 text-sm leading-relaxed">{item.text}</p>
+            </div>
+          ))}
+        </div>
+        <TopicSeparator topic={topic} />
+        <div className="text-center pt-4">
+          <p className={cn("text-lg font-semibold mb-2", topic.accentText)}>
+            &ldquo;The best among you are those who have the best manners and character.&rdquo;
+          </p>
+          <p className="text-gray-700 text-sm">- Prophet Muhammad ﷺ (Sahih Bukhari)</p>
+        </div>
+      </TopicBenefits>
+    </section>
+  )
 };
 
 export default MannersSection;

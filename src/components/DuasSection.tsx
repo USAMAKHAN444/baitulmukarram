@@ -141,4 +141,86 @@ const DuasSection = ({ topicId = "duas" }: DuasSectionProps) => {
         translations. Ideal for learning and practice.
       </TopicIntro>
 
-      <motion className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {duas.map((dua, index) => {
+          const Icon = dua.icon;
+          return (
+            <TopicCard
+              key={index}
+              topic={topic}
+              header={
+                <>
+                  <div className="flex items-center justify-between gap-3 mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-white/20 rounded-lg shrink-0">
+                        <Icon className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-lg font-bold text-white">{index + 1}.</span>
+                    </div>
+                    <TopicCategoryPill topic={topic}>{dua.category}</TopicCategoryPill>
+                  </div>
+                  <TopicCardTitle>
+                    {dua.title} | {dua.urdu}
+                  </TopicCardTitle>
+                </>
+              }
+            >
+              <div>
+                <TopicLabel topic={topic}>Arabic:</TopicLabel>
+                <TopicArabicBox topic={topic}>
+                  <p className="text-lg font-arabic leading-relaxed text-right">{dua.arabic}</p>
+                </TopicArabicBox>
+              </div>
+
+              <TopicSeparator topic={topic} />
+
+              <div>
+                <TopicLabel topic={topic}>English:</TopicLabel>
+                <TopicTextBox topic={topic}>{dua.english}</TopicTextBox>
+              </div>
+
+              <TopicSeparator topic={topic} />
+
+              <div>
+                <TopicLabel topic={topic}>Urdu:</TopicLabel>
+                <TopicTextBox topic={topic} align="right">
+                  {dua.urduTranslation}
+                </TopicTextBox>
+              </div>
+            </TopicCard>
+          );
+        })}
+      </div>
+
+      <TopicBenefits topic={topic} title="🌟 Benefits of Daily Duas">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          {[
+            {
+              icon: "🤲",
+              title: "Constant Remembrance",
+              text: "Keep Allah in your heart throughout the day",
+            },
+            {
+              icon: "✨",
+              title: "Spiritual Blessing",
+              text: "Receive Allah's blessings in daily activities",
+            },
+            {
+              icon: "❤️",
+              title: "Peace of Mind",
+              text: "Find tranquility and gratitude in everyday moments",
+            },
+          ].map((item) => (
+            <div key={item.title}>
+              <div className="text-3xl mb-3">{item.icon}</div>
+              <h4 className={cn("font-semibold mb-2", topic.accentText)}>{item.title}</h4>
+              <p className="text-gray-700 text-sm font-medium">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </TopicBenefits>
+    </section>
+  );
+};
+
+export default DuasSection;

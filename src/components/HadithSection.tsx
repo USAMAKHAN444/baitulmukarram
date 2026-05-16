@@ -1,20 +1,57 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Heart,
+  Sparkles,
+  Users,
+  GraduationCap,
+  Smile,
+  Shield,
+  Globe,
+  type LucideIcon,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Heart, BookOpen, Sparkles, Users, GraduationCap, Smile, Shield, Globe } from "lucide-react";
+import {
+  TopicArabicBox,
+  TopicBenefits,
+  TopicCard,
+  TopicCardTitle,
+  TopicCategoryPill,
+  TopicIntro,
+  TopicLabel,
+  TopicSeparator,
+  TopicTextBox,
+  useLearningTopic,
+} from "@/components/learning/TopicThemedBlocks";
+import { cn } from "@/lib/utils";
 
-const HadithSection = () => {
-  const hadiths = [
+type HadithSectionProps = {
+  topicId?: string;
+};
+
+const HadithSection = ({ topicId = "hadith" }: HadithSectionProps) => {
+  const { topic } = useLearningTopic(topicId);
+
+  const hadiths: {
+    title: string;
+    urdu: string;
+    arabic: string;
+    english: string;
+    urduTranslation: string;
+    reference: string;
+    explanation: string;
+    icon: LucideIcon;
+  }[] = [
     {
       title: "Hadith on Intentions (Niyyah)",
       urdu: "نیت کی اہمیت",
       arabic: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى",
-      english: "Actions are judged by intentions, and everyone will be rewarded according to what they intended.",
-      urduTranslation: "اعمال کا دار و مدار نیتوں پر ہے، اور ہر شخص کو وہی ملے گا جس کی اس نے نیت کی۔",
+      english:
+        "Actions are judged by intentions, and everyone will be rewarded according to what they intended.",
+      urduTranslation:
+        "اعمال کا دار و مدار نیتوں پر ہے، اور ہر شخص کو وہی ملے گا جس کی اس نے نیت کی۔",
       reference: "Sahih Bukhari 1",
-      explanation: "Always have a pure intention before doing any good deed. Even small acts become big in reward with sincere intention.",
+      explanation:
+        "Always have a pure intention before doing any good deed. Even small acts become big in reward with sincere intention.",
       icon: Heart,
-      color: "bg-red-100 text-red-800"
     },
     {
       title: "Hadith on Kindness",
@@ -25,7 +62,6 @@ const HadithSection = () => {
       reference: "Sahih Bukhari 7376",
       explanation: "Be kind to people, animals, and the environment. Mercy invites Allah's mercy.",
       icon: Heart,
-      color: "bg-pink-100 text-pink-800"
     },
     {
       title: "Hadith on Cleanliness",
@@ -34,9 +70,9 @@ const HadithSection = () => {
       english: "Cleanliness is half of faith.",
       urduTranslation: "صفائی نصف ایمان ہے۔",
       reference: "Sahih Muslim 223",
-      explanation: "Keeping your body, clothes, and surroundings clean is part of your religious duties.",
+      explanation:
+        "Keeping your body, clothes, and surroundings clean is part of your religious duties.",
       icon: Sparkles,
-      color: "bg-blue-100 text-blue-800"
     },
     {
       title: "Hadith on Good Character",
@@ -45,9 +81,9 @@ const HadithSection = () => {
       english: "The best among you are those who have the best manners and character.",
       urduTranslation: "تم میں سب سے بہتر وہ ہے جس کا اخلاق سب سے اچھا ہے۔",
       reference: "Sahih Bukhari 3559",
-      explanation: "Islam teaches good behavior, honesty, humility, and kindness as essential traits of a believer.",
+      explanation:
+        "Islam teaches good behavior, honesty, humility, and kindness as essential traits of a believer.",
       icon: Users,
-      color: "bg-green-100 text-green-800"
     },
     {
       title: "Hadith on Seeking Knowledge",
@@ -56,9 +92,9 @@ const HadithSection = () => {
       english: "Seeking knowledge is an obligation upon every Muslim.",
       urduTranslation: "علم حاصل کرنا ہر مسلمان پر فرض ہے۔",
       reference: "Sunan Ibn Majah 224",
-      explanation: "Islamic learning is not optional; every Muslim must learn the basics of faith and practice.",
+      explanation:
+        "Islamic learning is not optional; every Muslim must learn the basics of faith and practice.",
       icon: GraduationCap,
-      color: "bg-purple-100 text-purple-800"
     },
     {
       title: "Hadith on Smiling",
@@ -69,7 +105,6 @@ const HadithSection = () => {
       reference: "Tirmidhi 1956",
       explanation: "Small acts of kindness and positivity are valuable in Islam.",
       icon: Smile,
-      color: "bg-yellow-100 text-yellow-800"
     },
     {
       title: "Hadith on Trust",
@@ -80,7 +115,6 @@ const HadithSection = () => {
       reference: "Musnad Ahmad 12373",
       explanation: "Being honest and trustworthy is a sign of a true believer.",
       icon: Shield,
-      color: "bg-indigo-100 text-indigo-800"
     },
     {
       title: "Hadith on Mercy to Animals",
@@ -91,131 +125,96 @@ const HadithSection = () => {
       reference: "Sahih Bukhari 2466",
       explanation: "Islam teaches kindness to all creatures, not just humans.",
       icon: Globe,
-      color: "bg-green-100 text-green-800"
-    }
+    },
   ];
 
   return (
-    <section className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">
-            📖 Hadith Corner | حدیث کارنر
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">
-            Beautiful Sayings of Prophet Muhammad ﷺ
-          </h2>
-          <p className="text-lg text-black max-w-2xl mx-auto">
-            Explore the beautiful sayings of Prophet Muhammad ﷺ with authentic sources, 
-            Urdu & English translation, and practical explanations.
-          </p>
-        </div>
+    <section className="space-y-8">
+      <TopicIntro topic={topic} badge="🤲 Daily Duas | روزانہ کی دعائیں">
+        Short, authentic supplications for everyday situations in Arabic with English and Urdu
+        translations. Ideal for learning and practice.
+      </TopicIntro>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {hadiths.map((hadith, index) => (
-            <Card key={index} className="hover:shadow-elegant transition-all duration-300 border-border/50 overflow-hidden group">
-              <CardHeader className="bg-gradient-islamic text-primary-foreground">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-primary-foreground/20 rounded-lg">
-                      <hadith.icon className="w-5 h-5" />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {duas.map((dua, index) => {
+          const Icon = dua.icon;
+          return (
+            <TopicCard
+              key={index}
+              topic={topic}
+              header={
+                <>
+                  <div className="flex items-center justify-between gap-3 mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-white/20 rounded-lg shrink-0">
+                        <Icon className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-lg font-bold text-white">{index + 1}.</span>
                     </div>
-                    <div>
-                      <span className="text-lg font-bold text-black">{index + 1}.</span>
-                    </div>
+                    <TopicCategoryPill topic={topic}>{dua.category}</TopicCategoryPill>
                   </div>
-                  <Badge variant="secondary" className={`text-xs ${hadith.color}`}>
-                    Hadith
-                  </Badge>
-                </div>
-                <CardTitle className="text-lg text-black group-hover:text-black transition-colors">
-                  {hadith.title} | {hadith.urdu}
-                </CardTitle>
-              </CardHeader>
-              
-              <CardContent className="p-6 space-y-6">
-                {/* Arabic Text */}
-                <div>
-                  <h4 className="font-semibold text-black mb-3">Arabic:</h4>
-                  <div className="bg-gradient-subtle p-4 rounded-lg border">
-                    <p className="text-lg font-arabic leading-relaxed text-right text-black">
-                      {hadith.arabic}
-                    </p>
-                  </div>
-                </div>
+                  <TopicCardTitle>
+                    {dua.title} | {dua.urdu}
+                  </TopicCardTitle>
+                </>
+              }
+            >
+              <div>
+                <TopicLabel topic={topic}>Arabic:</TopicLabel>
+                <TopicArabicBox topic={topic}>
+                  <p className="text-lg font-arabic leading-relaxed text-right">{dua.arabic}</p>
+                </TopicArabicBox>
+              </div>
 
-                <Separator />
+              <TopicSeparator topic={topic} />
 
-                {/* English Translation */}
-                <div>
-                  <h4 className="font-semibold text-black mb-3">Translation (English):</h4>
-                                      <p className="text-black leading-relaxed font-medium">
-                      "{hadith.english}"
-                    </p>
-                </div>
+              <div>
+                <TopicLabel topic={topic}>English:</TopicLabel>
+                <TopicTextBox topic={topic}>{dua.english}</TopicTextBox>
+              </div>
 
-                <Separator />
+              <TopicSeparator topic={topic} />
 
-                {/* Urdu Translation */}
-                <div>
-                  <h4 className="font-semibold text-black mb-3">Urdu Translation:</h4>
-                                      <p className="text-black leading-relaxed text-right">
-                      "{hadith.urduTranslation}"
-                    </p>
-                </div>
+              <div>
+                <TopicLabel topic={topic}>Urdu:</TopicLabel>
+                <TopicTextBox topic={topic} align="right">
+                  {dua.urduTranslation}
+                </TopicTextBox>
+              </div>
+            </TopicCard>
+          );
+        })}
+      </div>
 
-                <Separator />
-
-                {/* Reference */}
-                <div>
-                  <h4 className="font-semibold text-black mb-2">Reference:</h4>
-                  <Badge variant="outline" className="text-xs">
-                    {hadith.reference}
-                  </Badge>
-                </div>
-
-                {/* Explanation */}
-                <div className="bg-accent/10 p-4 rounded-lg border border-accent/20">
-                  <h4 className="font-semibold text-black mb-2">Explanation:</h4>
-                                      <p className="text-sm text-black leading-relaxed">
-                      {hadith.explanation}
-                    </p>
-                </div>
-              </CardContent>
-            </Card>
+      <TopicBenefits topic={topic} title="🌟 Benefits of Daily Duas">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          {[
+            {
+              icon: "🤲",
+              title: "Constant Remembrance",
+              text: "Keep Allah in your heart throughout the day",
+            },
+            {
+              icon: "✨",
+              title: "Spiritual Blessing",
+              text: "Receive Allah's blessings in daily activities",
+            },
+            {
+              icon: "❤️",
+              title: "Peace of Mind",
+              text: "Find tranquility and gratitude in everyday moments",
+            },
+          ].map((item) => (
+            <div key={item.title}>
+              <div className="text-3xl mb-3">{item.icon}</div>
+              <h4 className={cn("font-semibold mb-2", topic.accentText)}>{item.title}</h4>
+              <p className="text-gray-700 text-sm font-medium">{item.text}</p>
+            </div>
           ))}
         </div>
-
-        {/* Benefits Section */}
-        <Card className="mt-16 bg-gradient-gold border-accent/20 shadow-gold">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl text-black font-bold">
-              🌟 Benefits of Learning Hadith
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="text-center space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="text-3xl mb-3">📚</div>
-                <h4 className="font-semibold text-black mb-2">Authentic Guidance</h4>
-                <p className="text-black font-medium text-sm">Learn from the perfect example of Prophet Muhammad ﷺ</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl mb-3">🌱</div>
-                <h4 className="font-semibold text-black mb-2">Character Building</h4>
-                <p className="text-black font-medium text-sm">Develop beautiful Islamic manners and ethics</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl mb-3">💎</div>
-                <h4 className="font-semibold text-black mb-2">Spiritual Reward</h4>
-                <p className="text-black font-medium text-sm">Earn great reward by following prophetic teachings</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      </TopicBenefits>
     </section>
   );
 };
 
-export default HadithSection;
+export default DuasSection;
