@@ -91,8 +91,9 @@ export const TopicArabicBox = ({
 }) => (
   <div
     className={cn(
-      "rounded-lg border-2 p-4 text-gray-900 bg-white/80 shadow-sm",
+      "rounded-lg border-2 p-4 text-gray-900 shadow-sm",
       topic.accentBorder,
+      topic.pageBg,
       className
     )}
   >
@@ -113,8 +114,9 @@ export const TopicTextBox = ({
 }) => (
   <div
     className={cn(
-      "rounded-lg border-2 p-4 bg-white/75 text-gray-800 leading-relaxed",
+      "rounded-lg border-2 p-4 text-gray-800 leading-relaxed",
       topic.accentBorder,
+      topic.pageBg,
       align === "right" && "text-right",
       className
     )}

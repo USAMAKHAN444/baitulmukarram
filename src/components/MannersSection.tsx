@@ -1,5 +1,3 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   Heart,
   Hand,
@@ -11,7 +9,10 @@ import {
   Shield,
   Globe,
   Award,
+  type LucideIcon,
 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   TopicBenefits,
   TopicCard,
@@ -31,24 +32,30 @@ type MannersSectionProps = {
 
 const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
   const { topic, headerGradient } = useLearningTopic(topicId);
-  const manners = [
+
+  const manners: {
+    title: string;
+    urdu: string;
+    description: string;
+    urduDescription: string;
+    icon: LucideIcon;
+    category: string;
+  }[] = [
     {
       title: "Saying Bismillah",
       urdu: "بِسْمِ اللّٰهِ کہنا",
-      description: "Begin meals or actions by saying \"Bismillah\" (In the name of Allah).",
-      urduDescription: "کھانے یا کسی کام کی شروعات اللہ کے نام سے کریں، \"بِسْمِ اللّٰهِ\" کہہ کر۔",
+      description: 'Begin meals or actions by saying "Bismillah" (In the name of Allah).',
+      urduDescription: 'کھانے یا کسی کام کی شروعات اللہ کے نام سے کریں، "بِسْمِ اللّٰهِ" کہہ کر۔',
       icon: Heart,
       category: "Daily Habits",
-      color: "bg-red-100 text-red-800"
     },
     {
       title: "Greeting with Salaam",
       urdu: "سلام سے آغاز کریں",
-      description: "Always greet others with \"Assalamu Alaikum\"; reply with \"Wa Alaikum Salaam.\"",
-      urduDescription: "دوسروں کو ہمیشہ \"السلام علیکم\" سے سلام کریں، جواب میں \"وعلیکم السلام\" کہیں۔",
+      description: 'Always greet others with "Assalamu Alaikum"; reply with "Wa Alaikum Salaam."',
+      urduDescription: 'دوسروں کو ہمیشہ "السلام علیکم" سے سلام کریں، جواب میں "وعلیکم السلام" کہیں۔',
       icon: Users,
       category: "Social Etiquette",
-      color: "bg-blue-100 text-blue-800"
     },
     {
       title: "Respecting Parents & Elders",
@@ -57,7 +64,6 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
       urduDescription: "بڑوں سے ادب سے بات کریں، ان کی بات مانو، اور کبھی ان کو نام سے نہ بلائیں۔",
       icon: Heart,
       category: "Family Values",
-      color: "bg-purple-100 text-purple-800"
     },
     {
       title: "Use Right Hand",
@@ -66,7 +72,6 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
       urduDescription: "کھانا، پینا یا کسی چیز کا لینا، دینا ہمیشہ دایاں ہاتھ استعمال کریں۔",
       icon: Hand,
       category: "Prophetic Guidance",
-      color: "bg-green-100 text-green-800"
     },
     {
       title: "Cleanliness is Half of Faith",
@@ -75,7 +80,6 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
       urduDescription: "اپنے جسم، کپڑے اور ماحول کو صاف رکھیں۔ اسلام میں صفائی کو ایمان کا نصف کہا گیا ہے۔",
       icon: Sparkles,
       category: "Personal Hygiene",
-      color: "bg-cyan-100 text-cyan-800"
     },
     {
       title: "Speak Kindly & Truthfully",
@@ -84,7 +88,6 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
       urduDescription: "سخت الفاظ یا جھوٹ سے گریز کریں۔ ہمیشہ نرمی سے اور سچ بولیں۔",
       icon: MessageCircle,
       category: "Speech Ethics",
-      color: "bg-yellow-100 text-yellow-800"
     },
     {
       title: "Be Kind & Forgiving",
@@ -93,16 +96,14 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
       urduDescription: "دوسروں کو معاف کریں اور رحم دلی کا مظاہرہ کریں۔ اللہ انہیں پسند فرماتا ہے جو درگزر کرنے والے ہیں۔",
       icon: Heart,
       category: "Character Building",
-      color: "bg-pink-100 text-pink-800"
     },
     {
       title: "Ask Permission Before Entering",
       urdu: "اجازت لے کر داخل ہوں",
       description: "Knock or say Salaam before entering a room or a house.",
-      urduDescription: "کسی کمرے یا گھر میں داخل ہونے سے پہلے \"سلام\" کہہ کر یا دروازہ کھٹکھٹا کر اجازت لیں۔",
+      urduDescription: 'کسی کمرے یا گھر میں داخل ہونے سے پہلے "سلام" کہہ کر یا دروازہ کھٹکھٹا کر اجازت لیں۔',
       icon: Home,
       category: "Privacy Respect",
-      color: "bg-indigo-100 text-indigo-800"
     },
     {
       title: "Avoid Backbiting, Lying & Gossip",
@@ -111,7 +112,6 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
       urduDescription: "غیبت، افواہوں یا جھوٹ سے پرہیز کریں—یہ سب ایمان کو کمزور کرتے ہیں۔",
       icon: Shield,
       category: "Speech Ethics",
-      color: "bg-red-100 text-red-800"
     },
     {
       title: "Help Others & Show Empathy",
@@ -120,7 +120,6 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
       urduDescription: "ضرورت مند کی مدد کریں، جانوروں کے ساتھ مہربانی کریں، اور گھر والوں کا خیال رکھیں۔",
       icon: Globe,
       category: "Community Service",
-      color: "bg-emerald-100 text-emerald-800"
     },
     {
       title: "Moderate Speech & Avoid Quarrels",
@@ -129,16 +128,16 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
       urduDescription: "بے مقصد باتوں یا تلخ گوئی سے پرہیز کریں۔ فضول گفتگو کے بجائے خاموشی کو ترجیح دیں۔",
       icon: MessageCircle,
       category: "Speech Ethics",
-      color: "bg-orange-100 text-orange-800"
     },
     {
       title: "Greetings Gesture – Adab",
       urdu: "آداب کا اشارہ",
-      description: "In some South Asian cultures, the \"Adab\" gesture—raising the right hand to the forehead respectfully—is used as greeting.",
-      urduDescription: "ہندوستان و پاکستان میں اکثر \"آداب\" کے اشارے کے طور پر دایاں ہاتھ پیشانی کے سامنے اٹھا کر ادب سے سلام کیا جاتا ہے۔",
+      description:
+        'In some South Asian cultures, the "Adab" gesture—raising the right hand to the forehead respectfully—is used as greeting.',
+      urduDescription:
+        'ہندوستان و پاکستان میں اکثر "آداب" کے اشارے کے طور پر دایاں ہاتھ پیشانی کے سامنے اٹھا کر ادب سے سلام کیا جاتا ہے۔',
       icon: Hand,
       category: "Cultural Respect",
-      color: "bg-violet-100 text-violet-800"
     },
     {
       title: "Seek Knowledge & Never Be Ashamed to Ask",
@@ -147,144 +146,22 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
       urduDescription: "اسلامی تعلیم حاصل کرنا بڑا ثواب ہے؛ سوال پوچھنے میں کبھی جھجھک محسوس نہ کریں۔",
       icon: BookOpen,
       category: "Learning",
-      color: "bg-teal-100 text-teal-800"
-    }
+    },
   ];
 
   const categories = [
-    { name: "Daily Habits", icon: Heart, count: manners.filter(m => m.category === "Daily Habits").length },
-    { name: "Social Etiquette", icon: Users, count: manners.filter(m => m.category === "Social Etiquette").length },
-    { name: "Family Values", icon: Heart, count: manners.filter(m => m.category === "Family Values").length },
-    { name: "Speech Ethics", icon: MessageCircle, count: manners.filter(m => m.category === "Speech Ethics").length },
-    { name: "Character Building", icon: Award, count: manners.filter(m => m.category === "Character Building").length },
+    { name: "Daily Habits", icon: Heart, count: manners.filter((m) => m.category === "Daily Habits").length },
+    { name: "Social Etiquette", icon: Users, count: manners.filter((m) => m.category === "Social Etiquette").length },
+    { name: "Family Values", icon: Heart, count: manners.filter((m) => m.category === "Family Values").length },
+    { name: "Speech Ethics", icon: MessageCircle, count: manners.filter((m) => m.category === "Speech Ethics").length },
+    { name: "Character Building", icon: Award, count: manners.filter((m) => m.category === "Character Building").length },
   ];
 
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">
-            Islamic Manners | اسلامی آداب
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">
-            Beautiful Islamic Character & Etiquette
-          </h2>
-          <p className="text-lg text-black max-w-2xl mx-auto">
-            Teach children Islamic etiquette and good character based on Quran and Sunnah. 
-            Each point includes practical examples and Urdu translations for clarity.
-          </p>
-        </div>
-
-        {/* Categories Overview */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
-          {categories.map((cat, index) => (
-            <Card key={index} className="text-center hover:shadow-lg transition-all duration-300">
-              <CardContent className="p-4">
-                <cat.icon className="w-8 h-8 text-black mx-auto mb-2" />
-                <p className="font-semibold text-sm text-black">{cat.name}</p>
-                <Badge variant="secondary" className="text-xs mt-1">{cat.count} Tips</Badge>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {manners.map((manner, index) => (
-            <Card key={index} className="hover:shadow-elegant transition-all duration-300 border-border/50 overflow-hidden group">
-              <CardHeader className="bg-gradient-subtle border-b">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-gradient-islamic rounded-lg">
-                      <manner.icon className="w-5 h-5 text-black" />
-                    </div>
-                    <div>
-                      <span className="text-lg font-bold text-black">{index + 1}.</span>
-                    </div>
-                  </div>
-                  <Badge variant="secondary" className={`text-xs ${manner.color}`}>
-                    {manner.category}
-                  </Badge>
-                </div>
-                <CardTitle className="text-lg text-black group-hover:text-black transition-colors">
-                  {manner.title} | {manner.urdu}
-                </CardTitle>
-              </CardHeader>
-              
-              <CardContent className="p-6 space-y-4">
-                {/* English Description */}
-                <div>
-                  <h4 className="font-semibold text-black mb-2">English:</h4>
-                  <p className="text-black leading-relaxed">
-                    {manner.description}
-                  </p>
-                </div>
-
-                <Separator />
-
-                {/* Urdu Description */}
-                <div>
-                  <h4 className="font-semibold text-black mb-2">Urdu:</h4>
-                  <p className="text-black leading-relaxed text-right">
-                    {manner.urduDescription}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Benefits Section */}
-        <Card className="mt-16 bg-gradient-islamic text-primary-foreground shadow-elegant">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl">
-              🌟 Why Islamic Manners Matter?
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="text-center space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="text-4xl mb-4">🌱</div>
-                <h4 className="font-semibold mb-3">Character Development</h4>
-                <p className="text-black text-sm leading-relaxed">
-                  Build strong moral foundations and become a better person following Islamic teachings.
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-4">❤️</div>
-                <h4 className="font-semibold mb-3">Social Harmony</h4>
-                <p className="text-black text-sm leading-relaxed">
-                  Create positive relationships with family, friends, and community through good manners.
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-4">✨</div>
-                <h4 className="font-semibold mb-3">Spiritual Reward</h4>
-                <p className="text-black text-sm leading-relaxed">
-                  Earn Allah's pleasure and reward by following the beautiful example of Prophet Muhammad ﷺ.
-                </p>
-              </div>
-            </div>
-            
-            <Separator className="bg-primary-foreground/20" />
-            
-            <div className="text-center">
-              <p className="text-lg font-semibold mb-2">
-                "The best among you are those who have the best manners and character."
-              </p>
-              <p className="text-black text-sm">
-                - Prophet Muhammad ﷺ (Sahih Bukhari)
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-  );
-  return (
     <section className="space-y-8">
-      <TopicIntro topic={topic} badge="🤝 Islamic Manners | اسلامی آداب">
-        Teach children Islamic etiquette and good character based on Quran and Sunnah.
-        Each point includes practical examples and Urdu translations for clarity.
+      <TopicIntro topic={topic} badge="🌿 Islamic Manners | اسلامی آداب">
+        Teach children Islamic etiquette and good character based on Quran and Sunnah. Each point
+        includes practical examples and Urdu translations for clarity.
       </TopicIntro>
 
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -293,15 +170,12 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
           return (
             <Card
               key={index}
-              className={cn(
-                "text-center border-2 overflow-hidden hover:shadow-lg transition-all",
-                topic.accentBorder
-              )}
+              className={cn("border-2 text-center shadow-sm overflow-hidden", topic.accentBorder)}
             >
-              <CardHeader className={cn("py-4", headerGradient)}>
+              <div className={cn("py-3", headerGradient)}>
                 <CatIcon className="w-7 h-7 text-white mx-auto" />
-              </CardHeader>
-              <CardContent className={cn("p-3", topic.pageBg)}>
+              </div>
+              <CardContent className={cn("p-4", topic.pageBg)}>
                 <p className={cn("font-semibold text-sm", topic.accentText)}>{cat.name}</p>
                 <Badge className={cn("text-xs mt-2 text-white border-0", topic.buttonClass)}>
                   {cat.count} Tips
@@ -320,20 +194,20 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
               key={index}
               topic={topic}
               header={
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <div className="flex items-center gap-2">
-                      <div className="p-2 bg-white/20 rounded-lg">
+                <>
+                  <div className="flex items-center justify-between gap-3 mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-white/20 rounded-lg shrink-0">
                         <Icon className="w-5 h-5 text-white" />
                       </div>
-                      <span className="text-white font-bold">{index + 1}.</span>
+                      <span className="text-lg font-bold text-white">{index + 1}.</span>
                     </div>
                     <TopicCategoryPill topic={topic}>{manner.category}</TopicCategoryPill>
                   </div>
                   <TopicCardTitle>
                     {manner.title} | {manner.urdu}
                   </TopicCardTitle>
-                </div>
+                </>
               }
             >
               <div>
@@ -357,9 +231,21 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
       <TopicBenefits topic={topic} title="🌟 Why Islamic Manners Matter?">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-8">
           {[
-            { icon: "🌱", title: "Character Development", text: "Build strong moral foundations and become a better person following Islamic teachings." },
-            { icon: "❤️", title: "Social Harmony", text: "Create positive relationships with family, friends, and community through good manners." },
-            { icon: "✨", title: "Spiritual Reward", text: "Earn Allah's pleasure and reward by following the beautiful example of Prophet Muhammad ﷺ." },
+            {
+              icon: "🌱",
+              title: "Character Development",
+              text: "Build strong moral foundations and become a better person following Islamic teachings.",
+            },
+            {
+              icon: "❤️",
+              title: "Social Harmony",
+              text: "Create positive relationships with family, friends, and community through good manners.",
+            },
+            {
+              icon: "✨",
+              title: "Spiritual Reward",
+              text: "Earn Allah's pleasure and reward by following the beautiful example of Prophet Muhammad ﷺ.",
+            },
           ].map((item) => (
             <div key={item.title}>
               <div className="text-4xl mb-4">{item.icon}</div>
@@ -368,16 +254,15 @@ const MannersSection = ({ topicId = "manners" }: MannersSectionProps) => {
             </div>
           ))}
         </div>
-        <TopicSeparator topic={topic} />
-        <div className="text-center pt-4">
+        <div className={cn("text-center border-t-2 pt-6", topic.accentBorder)}>
           <p className={cn("text-lg font-semibold mb-2", topic.accentText)}>
-            &ldquo;The best among you are those who have the best manners and character.&rdquo;
+            "The best among you are those who have the best manners and character."
           </p>
-          <p className="text-gray-700 text-sm">- Prophet Muhammad ﷺ (Sahih Bukhari)</p>
+          <p className="text-gray-600 text-sm">- Prophet Muhammad ﷺ (Sahih Bukhari)</p>
         </div>
       </TopicBenefits>
     </section>
-  )
+  );
 };
 
 export default MannersSection;

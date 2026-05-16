@@ -8,7 +8,6 @@ import {
   Globe,
   type LucideIcon,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import {
   TopicArabicBox,
   TopicBenefits,
@@ -130,14 +129,14 @@ const HadithSection = ({ topicId = "hadith" }: HadithSectionProps) => {
 
   return (
     <section className="space-y-8">
-      <TopicIntro topic={topic} badge="🤲 Daily Duas | روزانہ کی دعائیں">
-        Short, authentic supplications for everyday situations in Arabic with English and Urdu
-        translations. Ideal for learning and practice.
+      <TopicIntro topic={topic} badge="📖 Hadith Corner | حدیث کارنر">
+        Explore the beautiful sayings of Prophet Muhammad ﷺ with authentic sources, Urdu and
+        English translations, and practical explanations.
       </TopicIntro>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {duas.map((dua, index) => {
-          const Icon = dua.icon;
+        {hadiths.map((hadith, index) => {
+          const Icon = hadith.icon;
           return (
             <TopicCard
               key={index}
@@ -151,10 +150,10 @@ const HadithSection = ({ topicId = "hadith" }: HadithSectionProps) => {
                       </div>
                       <span className="text-lg font-bold text-white">{index + 1}.</span>
                     </div>
-                    <TopicCategoryPill topic={topic}>{dua.category}</TopicCategoryPill>
+                    <TopicCategoryPill topic={topic}>Hadith</TopicCategoryPill>
                   </div>
                   <TopicCardTitle>
-                    {dua.title} | {dua.urdu}
+                    {hadith.title} | {hadith.urdu}
                   </TopicCardTitle>
                 </>
               }
@@ -162,47 +161,65 @@ const HadithSection = ({ topicId = "hadith" }: HadithSectionProps) => {
               <div>
                 <TopicLabel topic={topic}>Arabic:</TopicLabel>
                 <TopicArabicBox topic={topic}>
-                  <p className="text-lg font-arabic leading-relaxed text-right">{dua.arabic}</p>
+                  <p className="text-lg font-arabic leading-relaxed text-right">{hadith.arabic}</p>
                 </TopicArabicBox>
               </div>
 
               <TopicSeparator topic={topic} />
 
               <div>
-                <TopicLabel topic={topic}>English:</TopicLabel>
-                <TopicTextBox topic={topic}>{dua.english}</TopicTextBox>
+                <TopicLabel topic={topic}>Translation (English):</TopicLabel>
+                <TopicTextBox topic={topic}>&ldquo;{hadith.english}&rdquo;</TopicTextBox>
               </div>
 
               <TopicSeparator topic={topic} />
 
               <div>
-                <TopicLabel topic={topic}>Urdu:</TopicLabel>
+                <TopicLabel topic={topic}>Urdu Translation:</TopicLabel>
                 <TopicTextBox topic={topic} align="right">
-                  {dua.urduTranslation}
+                  &ldquo;{hadith.urduTranslation}&rdquo;
                 </TopicTextBox>
+              </div>
+
+              <TopicSeparator topic={topic} />
+
+              <div>
+                <TopicLabel topic={topic}>Reference:</TopicLabel>
+                <Badge variant="outline" className={cn("text-xs", topic.accentBorder, topic.accentText)}>
+                  {hadith.reference}
+                </Badge>
+              </div>
+
+              <TopicSeparator topic={topic} />
+
+              <div className={cn("rounded-lg border-2 p-4", topic.accentBorder, topic.pageBg)}>
+                <TopicLabel topic={topic} className="mb-2">
+                  Explanation:
+                </TopicLabel>
+                <p className="text-sm text-gray-800 leading-relaxed">{hadith.explanation}</p>
               </div>
             </TopicCard>
           );
         })}
       </div>
 
-      <TopicBenefits topic={topic} title="🌟 Benefits of Daily Duas">
+      <TopicBenefits topic={topic} title="🌟 Benefits of Learning Hadith">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
           {[
             {
-              icon: "🤲",
-              title: "Constant Remembrance",
-              text: "Keep Allah in your heart throughout the day",
+              icon: "📖",
+              title: "Follow the Prophet ﷺ",
+              text: "Learn how to live according to the Sunnah in daily life",
             },
             {
-              icon: "✨",
-              title: "Spiritual Blessing",
-              text: "Receive Allah's blessings in daily activities",
+              icon: "💡",
+              title: "Practical Wisdom",
+              text: "Apply timeless guidance to character, family, and community",
             },
             {
               icon: "❤️",
-              title: "Peace of Mind",
-              text: "Find tranquility and gratitude in everyday moments",
+              title: "Stronger Faith",
+              text: "Grow love for Allah and His Messenger through authentic teachings",
             },
           ].map((item) => (
             <div key={item.title}>
@@ -217,4 +234,4 @@ const HadithSection = ({ topicId = "hadith" }: HadithSectionProps) => {
   );
 };
 
-export default DuasSection;
+export default HadithSection;
