@@ -1,0 +1,385 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system - Exact Sample Page Colors
+All colors MUST be the exact hex values from the sample page.
+*/
+
+@layer base {
+  :root {
+    /* Exact Sample Page Color Palette */
+    --background: 0 0% 100%;
+    --foreground: 220 15% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 20%;
+
+    /* Primary Colors - Exact Sample Page */
+    --primary: 271 68% 53%; /* #8A2BE2 */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 271 68% 53%;
+
+    /* Secondary Colors - Exact Sample Page */
+    --secondary: 225 73% 57%; /* #4169E1 */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 10% 96%;
+    --muted-foreground: 220 15% 45%;
+
+    /* Accent Colors - Exact Sample Page */
+    --accent: 142 70% 45%; /* #25D366 WhatsApp Green */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 90%;
+    --input: 220 15% 94%;
+    --ring: 271 68% 53%;
+
+    /* Exact Sample Page Gradients */
+    --gradient-primary: linear-gradient(135deg, #8A2BE2 0%, #00CED1 100%); /* Purple to Teal/Green */
+    --gradient-secondary: linear-gradient(135deg, #8A2BE2 0%, #4169E1 100%); /* Purple to Blue */
+    --gradient-accent: linear-gradient(135deg, #25D366 0%, #25D366 100%); /* WhatsApp Green */
+    --gradient-hero: linear-gradient(135deg, #8A2BE2 0%, #00CED1 100%); /* Purple to Teal/Green */
+    --gradient-subtle: linear-gradient(135deg, #F8F9FF 0%, #F0F2FF 50%, #E8EBFF 100%); /* Light Blue/Purple */
+    --gradient-card: linear-gradient(145deg, #FFFFFF 0%, #F8F9FF 100%);
+    --gradient-overlay: linear-gradient(135deg, rgba(138, 43, 226, 0.05) 0%, rgba(0, 206, 209, 0.03) 100%);
+    --gradient-purple-blue: linear-gradient(135deg, #8A2BE2 0%, #4169E1 100%);
+    --gradient-green: linear-gradient(135deg, #25D366 0%, #25D366 100%);
+    
+    /* Exact Sample Page Gradients for Whole Website */
+    --gradient-hero-bg: linear-gradient(135deg, #F8F9FF 0%, #F0F2FF 50%, #E8EBFF 100%); /* Light Blue/Purple */
+    --gradient-section-bg: linear-gradient(135deg, #F8F9FF 0%, #F0F2FF 50%, #E8EBFF 100%); /* Light Blue/Purple */
+    --gradient-card-bg: linear-gradient(145deg, #FFFFFF 0%, #F8F9FF 100%);
+    --gradient-button-primary: linear-gradient(135deg, #8A2BE2 0%, #00CED1 100%); /* Purple to Teal/Green */
+    --gradient-button-secondary: linear-gradient(135deg, #8A2BE2 0%, #4169E1 100%); /* Purple to Blue */
+    --gradient-button-accent: linear-gradient(135deg, #25D366 0%, #25D366 100%); /* WhatsApp Green */
+    --gradient-text-primary: linear-gradient(135deg, #8A2BE2 0%, #00CED1 100%); /* Purple to Teal/Green */
+    --gradient-text-secondary: linear-gradient(135deg, #8A2BE2 0%, #4169E1 100%); /* Purple to Blue */
+    --gradient-text-accent: linear-gradient(135deg, #25D366 0%, #25D366 100%); /* WhatsApp Green */
+    --gradient-border: linear-gradient(135deg, #8A2BE2 0%, #00CED1 100%);
+    --gradient-shadow: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(0, 206, 209, 0.1) 100%);
+    
+    /* Exact Sample Page Statistics Color */
+    --stats-color: 251 50% 60%; /* #6A5ACD */
+
+    /* Professional Shadows */
+    --shadow-primary: 0 10px 30px -10px rgba(138, 43, 226, 0.3);
+    --shadow-secondary: 0 5px 20px -5px rgba(65, 105, 225, 0.4);
+    --shadow-elegant: 0 20px 50px -20px rgba(138, 43, 226, 0.2);
+    --shadow-card: 0 4px 20px -4px rgba(138, 43, 226, 0.1);
+    --shadow-hover: 0 8px 30px -8px rgba(138, 43, 226, 0.2);
+
+    /* Enhanced Animation */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-spring: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Animations */
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .animate-fade-in-down {
+    animation: fadeInDown 0.8s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+  
+  .animate-gradient-shift {
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+/* Keyframe Definitions */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px rgba(138, 43, 226, 0.3); }
+  to { box-shadow: 0 0 30px rgba(138, 43, 226, 0.6); }
+}
+
+/* Hover Effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.hover-scale {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Gradient Text - Exact Sample Page */
+.gradient-text {
+  background: var(--gradient-text-primary);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+.gradient-text-secondary {
+  background: var(--gradient-text-secondary);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+.gradient-text-accent {
+  background: var(--gradient-text-accent);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+/* Card Hover Effects */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--gradient-card-bg);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-hover);
+  background: var(--gradient-overlay);
+}
+
+/* Extensive Gradient Backgrounds - Exact Sample Page */
+.gradient-hero-bg {
+  background: var(--gradient-hero-bg);
+}
+
+.gradient-section-bg {
+  background: var(--gradient-section-bg);
+}
+
+.gradient-card-bg {
+  background: var(--gradient-card-bg);
+}
+
+/* Gradient Borders */
+.gradient-border {
+  border: 2px solid;
+  border-image: var(--gradient-border) 1;
+}
+
+.gradient-border-bottom {
+  border-bottom: 2px solid;
+  border-image: var(--gradient-border) 1;
+}
+
+/* Gradient Shadows */
+.gradient-shadow {
+  box-shadow: var(--gradient-shadow);
+}
+
+/* Gradient Buttons - Exact Sample Page */
+.btn-gradient-primary {
+  background: var(--gradient-button-primary);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
+}
+
+.btn-gradient-secondary {
+  background: var(--gradient-button-secondary);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(65, 105, 225, 0.3);
+}
+
+.btn-gradient-accent {
+  background: var(--gradient-button-accent);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+}
+
+/* Stats Color - Exact Sample Page */
+.stats-color {
+  color: #6A5ACD;
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="16" fill="#4F46E5"/>
+  
+  <!-- Book icon representing Quran/Islamic learning -->
+  <path d="M8 8h16v2H8V8zm0 2h16v2H8v-2zm0 2h16v2H8v-2zm0 2h16v2H8v-2zm0 2h16v2H8v-2zm0 2h16v2H8v-2zm0 2h16v2H8v-2zm0 2h16v2H8v-2z" fill="white"/>
+  
+  <!-- Crescent moon -->
+  <path d="M20 10c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4z" fill="white"/>
+  <path d="M18 10c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z" fill="#4F46E5"/>
+</svg>
