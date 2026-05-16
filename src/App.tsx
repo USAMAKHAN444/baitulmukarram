@@ -11,6 +11,7 @@ import SurahsPage from "./pages/SurahsPage";
 import DuasPage from "./pages/DuasPage";
 import HadithPage from "./pages/HadithPage";
 import MannersPage from "./pages/MannersPage";
+import NooraniQaidaPage from "./pages/NooraniQaidaPage";
 
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/duas" element={<DuasPage />} />
           <Route path="/hadith" element={<HadithPage />} />
           <Route path="/manners" element={<MannersPage />} />
+          <Route path="/noorani-qaida" element={<NooraniQaidaPage />} />
 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

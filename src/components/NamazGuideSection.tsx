@@ -1,10 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
 import { ChevronRight, Clock, Droplets } from "lucide-react";
+import { getTopicById } from "@/lib/learningTopics";
+import { cn } from "@/lib/utils";
 
-const NamazGuideSection = () => {
+type NamazGuideSectionProps = {
+  topicId?: string;
+};
+
+const NamazGuideSection = ({ topicId = "namaz" }: NamazGuideSectionProps) => {
+  const topic = getTopicById(topicId) ?? getTopicById("namaz")!;
+  const headerGradient = `bg-gradient-to-br ${topic.gradient}`;
   const wuduSteps = [
     {
       step: 1,
@@ -132,31 +138,17 @@ const NamazGuideSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">
-            Namaz Guide | نماز کا طریقہ
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">
-            Complete Prayer Guide
-          </h2>
-          <p className="text-lg text-black max-w-2xl mx-auto">
-            Learn the proper way to perform Wudu (ablution) and Namaz (prayer) with step-by-step instructions.
-          </p>
-        </div>
-
-        {/* Wudu Section */}
-        <div className="mb-20">
-          <Card className="bg-gradient-gold border-accent/20 shadow-gold mb-8">
-            <CardHeader className="text-center">
-              <div className="flex items-center justify-center mb-4">
-                <Droplets className="w-8 h-8 text-black mr-3" />
-                <CardTitle className="text-2xl text-black font-bold">
+    <section className="space-y-12">
+        <div>
+          <Card className={cn("shadow-lg mb-8 border-2", topic.accentBorder, headerGradient)}>
+            <CardHeader className="text-center py-6 px-4">
+              <div className="flex items-center justify-center mb-2 gap-3 flex-wrap">
+                <Droplets className="w-8 h-8 text-white shrink-0" />
+                <CardTitle className="text-xl sm:text-2xl text-white font-bold leading-snug">
                   ✨ Wudu (Ablution) | وضو کا طریقہ
                 </CardTitle>
               </div>
-              <p className="text-black font-medium">
+              <p className="text-white/95 font-medium">
                 Step‑by‑Step Instructions in English & Urdu
               </p>
             </CardHeader>
@@ -164,23 +156,23 @@ const NamazGuideSection = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {wuduSteps.map((step, index) => (
-              <Card key={index} className="hover:shadow-islamic transition-all duration-300">
+              <Card key={index} className={cn("hover:shadow-lg transition-all border", topic.accentBorder)}>
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                                      <div className="w-8 h-8 bg-gradient-islamic rounded-full flex items-center justify-center text-black font-bold text-sm">
-                  {step.step}
-                </div>
+                      <div className={cn("w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm", topic.accentBg)}>
+                        {step.step}
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-black mb-2">{step.title}</h4>
-                      <p className="text-sm text-black mb-2">{step.description}</p>
-                      <p className="text-sm text-black text-right">{step.urdu}</p>
+                    <div className="flex-1 min-w-0">
+                      <h4 className={cn("font-semibold mb-2", topic.accentText)}>{step.title}</h4>
+                      <p className="text-sm text-gray-800 mb-2">{step.description}</p>
+                      <p className="text-sm text-gray-700 text-right">{step.urdu}</p>
                       {step.detail && (
-                        <p className="text-xs text-black mt-2 italic">{step.detail}</p>
+                        <p className="text-xs text-gray-600 mt-2 italic">{step.detail}</p>
                       )}
                       {step.arabic && (
-                        <p className="text-sm text-black font-arabic mt-2 text-right">{step.arabic}</p>
+                        <p className="text-sm text-gray-800 font-arabic mt-2 text-right">{step.arabic}</p>
                       )}
                     </div>
                   </div>
@@ -190,37 +182,35 @@ const NamazGuideSection = () => {
           </div>
         </div>
 
-        {/* Prayer Times */}
-        <div className="mb-16">
-          <Card className="bg-gradient-subtle border-border/50 shadow-elegant">
-            <CardHeader className="text-center">
-              <div className="flex items-center justify-center mb-4">
-                <Clock className="w-8 h-8 text-black mr-3" />
-                <CardTitle className="text-2xl text-black">
-                  📅 Farz Namaz Times | فرض نماز کے اوقات
+        <div>
+          <Card className={cn("shadow-lg border-2", topic.accentBorder, "bg-white/90")}>
+            <CardHeader className="text-center py-6">
+              <div className="flex items-center justify-center mb-2 gap-3 flex-wrap">
+                <Clock className={cn("w-8 h-8 shrink-0", topic.accentText)} />
+                <CardTitle className={cn("text-xl sm:text-2xl font-bold leading-snug", topic.accentText)}>
+                  🕒 📅 Farz Namaz Times | فرض نماز کے اوقات
                 </CardTitle>
               </div>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {namazTimes.map((prayer, index) => (
-                  <div key={index} className="text-center p-4 bg-card rounded-lg border">
-                    <h4 className="font-semibold text-black mb-2">{prayer.name}</h4>
-                    <p className="text-sm text-black mb-1">{prayer.urdu}</p>
-                    <Badge variant="secondary" className="text-xs">{prayer.rakats}</Badge>
+                  <div key={index} className={cn("text-center p-4 rounded-lg border-2 bg-white", topic.accentBorder)}>
+                    <h4 className={cn("font-semibold mb-2", topic.accentText)}>{prayer.name}</h4>
+                    <p className="text-sm text-gray-700 mb-2">{prayer.urdu}</p>
+                    <Badge className={cn("text-xs text-white border-0", topic.buttonClass)}>{prayer.rakats}</Badge>
                   </div>
                 ))}
               </div>
-              <p className="text-center text-sm text-black mt-4">(یہ پانچ فرض نمازیں ہیں)</p>
+              <p className="text-center text-sm text-gray-700 mt-4">(یہ پانچ فرض نمازیں ہیں)</p>
             </CardContent>
           </Card>
         </div>
 
-        {/* Prayer Steps */}
         <div>
-          <Card className="bg-gradient-islamic text-primary-foreground shadow-elegant mb-8">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl">
+          <Card className={cn("shadow-lg mb-8 border-2", topic.accentBorder, headerGradient)}>
+            <CardHeader className="text-center py-6 px-4">
+              <CardTitle className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-snug">
                 ✅ Steps of Namaz | نماز کے اعمال
               </CardTitle>
             </CardHeader>
@@ -228,18 +218,18 @@ const NamazGuideSection = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {namazSteps.map((step, index) => (
-              <Card key={index} className="hover:shadow-islamic transition-all duration-300 border-border/50">
+              <Card key={index} className={cn("hover:shadow-lg transition-all border", topic.accentBorder)}>
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
-                        <ChevronRight className="w-4 h-4 text-black" />
+                      <div className={cn("w-8 h-8 rounded-full flex items-center justify-center", topic.accentBg)}>
+                        <ChevronRight className="w-4 h-4 text-white" />
                       </div>
                     </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-black mb-2">{step.step}</h4>
-                      <p className="text-sm text-black mb-2">{step.description}</p>
-                      <p className="text-sm text-black text-right">{step.urdu}</p>
+                    <div className="flex-1 min-w-0">
+                      <h4 className={cn("font-semibold mb-2", topic.accentText)}>{step.step}</h4>
+                      <p className="text-sm text-gray-800 mb-2">{step.description}</p>
+                      <p className="text-sm text-gray-700 text-right">{step.urdu}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -248,26 +238,24 @@ const NamazGuideSection = () => {
           </div>
         </div>
 
-        {/* Benefits Section */}
-        <Card className="mt-16 bg-gradient-gold border-accent/20 shadow-gold">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl text-black font-bold">
+        <Card className={cn("border-2 shadow-lg", topic.accentBorder, headerGradient)}>
+          <CardHeader className="text-center py-6">
+            <CardTitle className="text-xl sm:text-2xl text-white font-bold">
               🌟 Benefits & Importance
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-center space-y-4">
-            <p className="text-black font-medium">
+          <CardContent className="text-center space-y-4 py-6 bg-white/95 rounded-b-xl">
+            <p className="text-gray-800 font-medium">
               Wudu cleanses both physically and spiritually, preparing you for prayer. (وضو جسمی و روحانی صفائی لاتا ہے)
             </p>
-            <p className="text-black font-medium">
+            <p className="text-gray-800 font-medium">
               Prayer connects you directly to Allah, mentally and morally. (نماز اللہ کے ساتھ رابطہ ہے)
             </p>
-            <p className="text-black font-medium">
+            <p className="text-gray-800 font-medium">
               Building consistent prayer habits early helps children spiritually. (بچوں میں نماز کی عادت ڈالنے سے ایمان مضبوط ہوتا ہے)
             </p>
           </CardContent>
         </Card>
-      </div>
     </section>
   );
 };

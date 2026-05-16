@@ -1,24 +1,10 @@
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import LearningTopicLayout from "@/components/LearningTopicLayout";
 import SurahsSection from "@/components/SurahsSection";
 
-const SurahsPage = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <Link to="/">
-            <Button variant="ghost" className="mb-4">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
-            </Button>
-          </Link>
-        </div>
-        <SurahsSection />
-      </div>
-    </div>
-  );
-};
+const SurahsPage = () => (
+  <LearningTopicLayout topicId="surahs">
+    <SurahsSection />
+  </LearningTopicLayout>
+);
 
 export default SurahsPage;

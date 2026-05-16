@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -28,8 +29,14 @@ import {
   buildEnrollmentMessage,
   buildContactEmailBody,
 } from "@/lib/institute";
+import {
+  ISLAMIC_LEARNING_SECTION_ID,
+  consumeScrollRestore,
+  scrollToIslamicLearning,
+} from "@/lib/learningTopics";
 
 const Index = () => {
+  const location = useLocation();
   const [enrollDialogOpen, setEnrollDialogOpen] = useState(false);
   const [contactDialogOpen, setContactDialogOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -50,6 +57,29 @@ const Index = () => {
     subject: "",
     message: ""
   });
+
+  useEffect(() => {
+    const shouldScroll =
+      location.hash === `#${ISLAMIC_LEARNING_SECTION_ID}` || consumeScrollRestore();
+
+    if (!shouldScroll) return;
+
+    const previousRestoration = history.scrollRestoration;
+    history.scrollRestoration = "manual";
+
+    const scroll = () => scrollToIslamicLearning("auto");
+    scroll();
+    const t1 = window.setTimeout(scroll, 50);
+    const t2 = window.setTimeout(scroll, 200);
+    const t3 = window.setTimeout(scroll, 500);
+
+    return () => {
+      history.scrollRestoration = previousRestoration;
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+      window.clearTimeout(t3);
+    };
+  }, [location.pathname, location.hash, location.key]);
 
   const handleWhatsAppClick = () => openWhatsApp();
 
@@ -116,7 +146,7 @@ const Index = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem 
-                  onClick={() => window.open('/Noorani-Qaida-With-Tajweed-Rules-In-English-Urdu-PDF-File-3-42.pdf', '_blank')}
+                  onClick={() => window.open('/noorani-qaida', '_blank')}
                   className="cursor-pointer"
                 >
                   <Eye className="w-4 h-4 mr-2" />
@@ -349,7 +379,7 @@ const Index = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => window.open('/Noorani-Qaida-With-Tajweed-Rules-In-English-Urdu-PDF-File-3-42.pdf', '_blank')}
+                    onClick={() => window.open('/noorani-qaida', '_blank')}
                     className="text-xs"
                   >
                     <Eye className="w-3 h-3 mr-1" />
