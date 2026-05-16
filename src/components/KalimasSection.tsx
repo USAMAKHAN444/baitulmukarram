@@ -1,20 +1,16 @@
-import {
-  TopicArabicBox,
-  TopicCard,
-  TopicCardTitle,
-  TopicIntro,
-  TopicLabel,
-  TopicSeparator,
-  TopicTextBox,
-  useLearningTopic,
-} from "@/components/learning/TopicThemedBlocks";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { getTopicById } from "@/lib/learningTopics";
+import { cn } from "@/lib/utils";
 
 type KalimasSectionProps = {
   topicId?: string;
 };
 
 const KalimasSection = ({ topicId = "kalimas" }: KalimasSectionProps) => {
-  const { topic } = useLearningTopic(topicId);
+  const topic = getTopicById(topicId) ?? getTopicById("kalimas")!;
+  const headerGradient = `bg-gradient-to-br ${topic.gradient}`;
 
   const kalimas = [
     {
@@ -73,45 +69,65 @@ const KalimasSection = ({ topicId = "kalimas" }: KalimasSectionProps) => {
 
   return (
     <section className="space-y-8">
-      <TopicIntro topic={topic} badge="🕋 The Six Kalimas | چھے کلمے">
-        Learn the six fundamental declarations of Islamic faith with Arabic text, English,
-        and Urdu translations.
-      </TopicIntro>
+      <Card className={cn("border-2 shadow-md", topic.accentBorder, headerGradient)}>
+        <CardContent className="py-5 px-4 text-center">
+          <Badge className={cn("mb-3 text-white border-0", topic.buttonClass)}>
+            🕋 The Six Kalimas | چھے کلمے
+          </Badge>
+          <p className="text-white/95 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            Learn the six fundamental declarations of Islamic faith with Arabic text,
+            English, and Urdu translations.
+          </p>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {kalimas.map((kalima, index) => (
-          <TopicCard
+          <Card
             key={index}
-            topic={topic}
-            header={
-              <TopicCardTitle>
-                ✅ {kalima.number} Kalima – {kalima.name}
-              </TopicCardTitle>
-            }
+            className={cn(
+              "overflow-hidden hover:shadow-lg transition-all duration-300 border-2",
+              topic.accentBorder
+            )}
           >
-            <div>
-              <TopicLabel topic={topic}>Arabic:</TopicLabel>
-              <TopicArabicBox topic={topic}>
-                <p className="text-lg font-arabic leading-relaxed text-right">{kalima.arabic}</p>
-              </TopicArabicBox>
-            </div>
+            <CardHeader className={cn("py-4 px-4", headerGradient)}>
+              <CardTitle className="text-base sm:text-lg font-bold text-white leading-snug">
+                ✅ {kalima.number} Kalima – {kalima.name}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-5 p-6 bg-white/90">
+              <div>
+                <h4 className={cn("font-semibold mb-3", topic.accentText)}>Arabic:</h4>
+                <p
+                  className={cn(
+                    "text-lg font-arabic leading-relaxed text-right p-4 rounded-lg border-2 text-gray-900",
+                    topic.accentBorder,
+                    topic.pageBg
+                  )}
+                >
+                  {kalima.arabic}
+                </p>
+              </div>
 
-            <TopicSeparator topic={topic} />
+              <Separator className={cn(topic.accentBg, "opacity-25")} />
 
-            <div>
-              <TopicLabel topic={topic}>English Translation:</TopicLabel>
-              <TopicTextBox topic={topic}>{kalima.english}</TopicTextBox>
-            </div>
+              <div>
+                <h4 className={cn("font-semibold mb-3", topic.accentText)}>
+                  English Translation:
+                </h4>
+                <p className="text-gray-800 leading-relaxed">{kalima.english}</p>
+              </div>
 
-            <TopicSeparator topic={topic} />
+              <Separator className={cn(topic.accentBg, "opacity-25")} />
 
-            <div>
-              <TopicLabel topic={topic}>Urdu Translation:</TopicLabel>
-              <TopicTextBox topic={topic} align="right">
-                {kalima.urdu}
-              </TopicTextBox>
-            </div>
-          </TopicCard>
+              <div>
+                <h4 className={cn("font-semibold mb-3", topic.accentText)}>
+                  Urdu Translation:
+                </h4>
+                <p className="text-gray-800 leading-relaxed text-right">{kalima.urdu}</p>
+              </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </section>
